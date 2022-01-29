@@ -1,8 +1,8 @@
-FROM buildpack-deps:stretch-curl
-MAINTAINER Manfred Touron <m@42.am> (https://github.com/moul)
+FROM buildpack-deps:bullseye-curl
+MAINTAINER Nyan Cat <a0939712328@gmail.com> (https://github.com/e666666)
 
 # Install deps
-RUN set -x; echo "Starting image build for Debian Stretch" \
+RUN set -x; echo "Starting image build for Debian Bullseye" \
  && dpkg --add-architecture arm64                      \
  && dpkg --add-architecture armel                      \
  && dpkg --add-architecture armhf                      \
@@ -61,11 +61,11 @@ RUN apt-get install -y mingw-w64 \
 
 #Build arguments
 ARG osxcross_repo="tpoechtrager/osxcross"
-ARG osxcross_revision="542acc2ef6c21aeb3f109c03748b1015a71fed63"
-ARG darwin_sdk_version="10.10"
-ARG darwin_osx_version_min="10.6"
-ARG darwin_version="14"
-ARG darwin_sdk_url="https://www.dropbox.com/s/yfbesd249w10lpc/MacOSX${darwin_sdk_version}.sdk.tar.xz"
+ARG osxcross_revision="be2b79f444aa0b43b8695a4fb7b920bf49ecc01c"
+ARG darwin_sdk_version="11.3"
+ARG darwin_osx_version_min="10.9"
+ARG darwin_version="20.4"
+ARG darwin_sdk_url="https://cdn.discordapp.com/attachments/862042593826832424/936957871814492220/MacOSX11.3.sdk.tar.xz"
 
 # ENV available in docker image
 ENV OSXCROSS_REPO="${osxcross_repo}"                   \
@@ -95,7 +95,7 @@ RUN mkdir -p "/tmp/osxcross"                                                    
 
 # Create symlinks for triples and set default CROSS_TRIPLE
 ENV LINUX_TRIPLES=arm-linux-gnueabi,arm-linux-gnueabihf,aarch64-linux-gnu,mipsel-linux-gnu,powerpc64le-linux-gnu                  \
-    DARWIN_TRIPLES=x86_64h-apple-darwin${DARWIN_VERSION},x86_64-apple-darwin${DARWIN_VERSION},i386-apple-darwin${DARWIN_VERSION}  \
+    DARWIN_TRIPLES=x86_64h-apple-darwin${DARWIN_VERSION},x86_64-apple-darwin${DARWIN_VERSION},aarch64-apple-darwin{DARWIN_VERSION}\
     WINDOWS_TRIPLES=i686-w64-mingw32,x86_64-w64-mingw32                                                                           \
     CROSS_TRIPLE=x86_64-linux-gnu
 COPY ./assets/osxcross-wrapper /usr/bin/osxcross-wrapper

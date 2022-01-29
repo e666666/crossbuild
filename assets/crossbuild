@@ -18,8 +18,8 @@ case "${CROSS_TRIPLE}" in
 	CROSS_TRIPLE="x86_64-apple-darwin${DARWIN_VERSION}" ;;
     x86_64h-apple-darwin|osx64h|darwin64h|x86_64h)
 	CROSS_TRIPLE="x86_64h-apple-darwin${DARWIN_VERSION}" ;;
-    i386-apple-darwin|osx32|darwin32)
-	CROSS_TRIPLE="i386-apple-darwin${DARWIN_VERSION}" ;;
+    aarch64-apple-darwin|osxAArch64|darwinAArch64)
+	CROSS_TRIPLE="aarch64-apple-darwin${DARWIN_VERSION}" ;;
     *-apple-darwin)
 	CROSS_TRIPLE="${CROSS_TRIPLE}${DARWIN_VERSION}" ;;
     x86_64-w64-mingw32|windows|win64)
