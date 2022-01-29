@@ -20,7 +20,7 @@ mipsel-linux-gnu       | mips, mipsel                        |   X   |     |
 powerpc64le-linux-gnu  | powerpc, powerpc64, powerpc64le     |   X   |     |
 x86_64-apple-darwin    | osx, osx64, darwin, darwin64        |       |  X  |
 x86_64h-apple-darwin   | osx64h, darwin64h, x86_64h          |       |  X  |
-i386-apple-darwin      | osx32, darwin32                     |       |  X  |
+aarch64-apple-darwin   | osxAArch64, darwinAArch64           |       |  X  |
 x86_64-w64-mingw32     | windows, win64                      |       |     |   X
 i686-w64-mingw32       | win32                               |       |     |   X
 
@@ -87,15 +87,6 @@ $ file helloworld
 helloworld: ELF 32-bit LSB  executable, MIPS, MIPS-II version 1 (SYSV), dynamically linked (uses shared libs), for GNU/Linux 2.6.32, BuildID[sha1]=d6b2f608a3c1a56b8b990be66eed0c41baaf97cd, not stripped
 ```
 
-#### darwin i386
-
-```console
-$ docker run -it --rm -v $(pwd):/workdir -e CROSS_TRIPLE=i386-apple-darwin  multiarch/crossbuild make helloworld
-o32-clang     helloworld.c   -o helloworld
-$ file helloworld
-helloworld: Mach-O executable i386
-```
-
 #### darwin x86_64
 
 ```console
@@ -103,6 +94,15 @@ $ docker run -it --rm -v $(pwd):/workdir -e CROSS_TRIPLE=x86_64-apple-darwin  mu
 o64-clang     helloworld.c   -o helloworld
 $ file helloworld
 helloworld: Mach-O 64-bit executable x86_64
+```
+
+#### darwin AArch64
+
+```console
+$ docker run -it --rm -v $(pwd):/workdir -e CROSS_TRIPLE=aarch64-apple-darwin  multiarch/crossbuild make helloworld
+aarch64-apple-darwin20.4-clang     helloworld.c   -o helloworld
+$ file helloworld
+helloworld: Mach-O 64-bit executable arm64
 ```
 
 #### windows i386
